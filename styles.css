@@ -16,3 +16,6 @@ body { margin: 0; font-family: "Hind Siliguri", "Inter", ui-sans-serif, system-u
 
 /* Reusable */
 .icon-small { width: 18px; height: 18px; }
+
+/* Navbar (topbar in HTML has inline minimal) */
+.copy-pill { background: #16a34a; color: #ffffff; border: none; border-radius: 999px; padding: 8px 14px; cursor: pointer; font-weight: 700; }

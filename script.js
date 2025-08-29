@@ -20,3 +20,9 @@ const copyCountEl = document.getElementById('copyCount');
 const cardsContainer = document.getElementById('cardsContainer');
 const historyList = document.getElementById('historyList');
 const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+function updateNav() {
+  likeCountEl.textContent = String(likeCount);
+  coinCountEl.textContent = String(coinCount);
+  copyCountEl.textContent = String(copyCount);
+}
