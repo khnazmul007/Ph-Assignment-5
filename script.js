@@ -73,3 +73,39 @@ function addHistory(name, number) {
   `;
   historyList.prepend(row);
 }
+
+cardsContainer.addEventListener('click', async (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  const card = btn.closest('.card');
+  const svc = services.find(x => x.id === card.dataset.serviceId);
+  if (!svc) return;
+  const action = btn.dataset.action;
+  if (action === 'like') {
+    likeCount++; updateNav(); return;
+  }
+  if (action === 'copy') {
+    try {
+      await navigator.clipboard.writeText(svc.number);
+      copyCount++; updateNav();
+      alert(`Copied: ${svc.number}`);
+    } catch {
+      alert('Copy failed.');
+    }
+    return;
+  }
+  if (action === 'call') {
+    if (coinCount < 20) { alert('Not enough coins. Need 20.'); return; }
+    coinCount -= 20; updateNav();
+    alert(`Calling ${svc.nameEn} (${svc.nameBn}) at ${svc.number}`);
+    addHistory(svc.nameBn, svc.number);
+    return;
+  }
+});
+
+clearHistoryBtn.addEventListener('click', () => {
+  historyList.innerHTML = '';
+});
+
+renderCards();
+updateNav();

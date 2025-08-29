@@ -25,3 +25,54 @@ body { margin: 0; font-family: "Hind Siliguri", "Inter", ui-sans-serif, system-u
 .hero-logo { width: 72px; height: 72px; margin-bottom: 12px; }
 .hero-title { margin: 0; font-size: 32px; font-weight: 800; }
 .hero-sub { margin-top: 10px; color: #d1fae5; font-size: 14px; }
+
+
+/* Main layout */
+.container { max-width: 1152px; margin: 24px auto; display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 0 16px; grid-template-areas: 'cards history'; }
+
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; grid-area: cards; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
+.card-head { display: flex; align-items: center; justify-content: space-between; }
+.head-left { display:flex; align-items:flex-start; gap:10px; }
+.service-icon { width:40px; height:40px; border-radius:12px; background:#fee2e2; display:flex; align-items:center; justify-content:center; }
+.service-icon img { width:20px; height:20px; }
+.service-title { font-weight: 700; }
+.service-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.badge { background: #f1f5f9; color: #6b7280; border-radius: 999px; font-size: 12px; padding: 4px 10px; display: inline-block; }
+.number { font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn { border: 1px solid #e5e7eb; background: #ffffff; color: #111827; height: 36px; padding: 0 14px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 14px; }
+.btn-primary { background: #16a34a; border: 1px solid #16a34a; color: #ffffff; }
+.btn-outline { background: #ffffff; }
+.like { background: transparent; border: 1px solid var(--border); width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+
+/* History */
+.history { background: #ffffff; border: none; border-radius: 12px; padding: 12px; height: fit-content; overflow: auto; grid-area: history; }
+.history-header { display: flex; align-items: center; justify-content: space-between; padding: 4px; }
+.history-title { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.history-list { display: grid; gap: 8px; margin-top: 8px; }
+.history-item { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; }
+.history-name { font-weight: 600; }
+.history-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.time { color: var(--muted); font-size: 12px; }
+.btn-success { background: #16a34a; color: #ffffff; border: none; border-radius: 999px; padding: 8px 16px; cursor: pointer; font-weight: 700; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container { grid-template-columns: 1fr; grid-template-areas: 'history' 'cards'; }
+}
+
+@media (min-width: 1025px) {
+  .history { min-height: 680px; }
+}
+
+@media (max-width: 768px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .cards { grid-template-columns: 1fr; }
+  .hero-title { font-size: 24px; }
+  .hero-logo { width: 60px; height: 60px; }
+}
