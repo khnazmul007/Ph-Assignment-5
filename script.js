@@ -26,3 +26,50 @@ function updateNav() {
   coinCountEl.textContent = String(coinCount);
   copyCountEl.textContent = String(copyCount);
 }
+
+function renderCards() {
+  const frag = document.createDocumentFragment();
+  services.slice(0,9).forEach(s => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.dataset.serviceId = s.id;
+    el.innerHTML = `
+      <div class="card-head">
+        <div class="head-left">
+          <div class="service-icon"><img src="${s.icon}" alt="${s.nameEn}"></div>
+          <div>
+            <div class="service-title">${s.nameBn}</div>
+            <div class="service-sub">${s.nameEn}</div>
+          </div>
+        </div>
+        <button class="like" data-action="like" aria-label="like"><img src="assets/heart.png" alt="heart" class="icon-small"></button>
+      </div>
+      <div class="number" data-number>${s.number}</div>
+      <div class="badge">${s.category}</div>
+      <div class="actions">
+        <button class="btn" data-action="copy">📋 Copy</button>
+        <button class="btn btn-primary" data-action="call">📞 Call</button>
+      </div>
+    `;
+    frag.appendChild(el);
+  });
+  cardsContainer.appendChild(frag);
+}
+
+function timeNow() {
+  const opt = { hour:'2-digit', minute:'2-digit', second:'2-digit' };
+  return new Intl.DateTimeFormat(undefined, opt).format(new Date());
+}
+
+function addHistory(name, number) {
+  const row = document.createElement('div');
+  row.className = 'history-item';
+  row.innerHTML = `
+    <div>
+      <div class="history-name">${name}</div>
+      <div class="history-sub">${number}</div>
+    </div>
+    <div class="time">${timeNow()}</div>
+  `;
+  historyList.prepend(row);
+}
